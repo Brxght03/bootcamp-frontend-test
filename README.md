@@ -9,6 +9,7 @@ Requirements
 
 How to use?
 - git pull this
+- cd (to this folder)
 - npm i
 - npm run dev
 - login to the site and enjoy!
