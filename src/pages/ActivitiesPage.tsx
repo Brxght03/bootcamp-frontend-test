@@ -27,12 +27,10 @@ function ActivitiesPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<string>('');
 
-    // ฟังก์ชันแปลงวันที่จาก dd/MM/yyyy (ปีพุทธศักราช) เป็น Date object
+  // ฟังก์ชันแปลงวันที่ไทย (DD/MM/YYYY) เป็น Date
   const parseThaiDate = (dateStr: string): Date => {
     const [day, month, year] = dateStr.split('/').map(Number);
-    // แปลงปีพุทธศักราช (เช่น 2568) เป็นคริสต์ศักราช (เช่น 2025)
-    const christianYear = year - 543;
-    return new Date(christianYear, month - 1, day); // month - 1 เพราะ JavaScript เริ่มที่ 0
+    return new Date(year - 543, month - 1, day);
   };
 
   useEffect(() => {
@@ -145,17 +143,17 @@ function ActivitiesPage() {
     )
     .sort((a, b) => {
       // เรียงตามฟิลด์ที่เลือก
-      let compareA: string | Date = a[sortField];
-      let compareB: string | Date = b[sortField];
-
       if (sortField === 'startDate' || sortField === 'endDate') {
-        compareA = parseThaiDate(a[sortField]);
-        compareB = parseThaiDate(b[sortField]);
+        const dateA = parseThaiDate(a[sortField]);
+        const dateB = parseThaiDate(b[sortField]);
+        return sortOrder === 'asc' ? dateA.getTime() - dateB.getTime() : dateB.getTime() - dateA.getTime();
+      } else {
+        const compareA = a[sortField].toLowerCase();
+        const compareB = b[sortField].toLowerCase();
+        if (compareA < compareB) return sortOrder === 'asc' ? -1 : 1;
+        if (compareA > compareB) return sortOrder === 'asc' ? 1 : -1;
+        return 0;
       }
-
-      if (compareA < compareB) return sortOrder === 'asc' ? -1 : 1;
-      if (compareA > compareB) return sortOrder === 'asc' ? 1 : -1;
-      return 0;
     });
 
   // คำนวณหน้าปัจจุบัน

@@ -38,6 +38,12 @@ function StaffActivitiesPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  // ฟังก์ชันแปลงวันที่ไทย (DD/MM/YYYY) เป็น Date
+  const parseThaiDate = (dateStr: string): Date => {
+    const [day, month, year] = dateStr.split('/').map(Number);
+    return new Date(year - 543, month - 1, day);
+  };
+
   useEffect(() => {
     fetchActivities();
   }, [userId]);
@@ -301,6 +307,12 @@ function StaffActivitiesPage() {
         return sortOrder === 'asc' 
           ? a.hours - b.hours 
           : b.hours - a.hours;
+      } else if (sortField === 'startDate' || sortField === 'endDate') {
+        const dateA = parseThaiDate(a[sortField]);
+        const dateB = parseThaiDate(b[sortField]);
+        return sortOrder === 'asc'
+          ? dateA.getTime() - dateB.getTime()
+          : dateB.getTime() - dateA.getTime();
       } else {
         // สำหรับฟิลด์ที่เป็นข้อความ
         const compareA = String(a[sortField]).toLowerCase();

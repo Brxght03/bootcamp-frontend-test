@@ -149,7 +149,7 @@ function RegisterPage() {
         
         {/* Registration form */}
         <div className="w-full max-w-2xl p-8 border-2 rounded-lg">
-          <h2 className="text-2xl font-bold text-center text-gray-600 mb-2">สมัครสมาชิกใหม่</h2>
+          <h2 className="text-2xl font-bold text-center mb-2">สมัครสมาชิกใหม่</h2>
           <p className="text-center text-gray-600 mb-6">กรอกข้อมูลเพื่อสร้างบัญชีนิสิต</p>
           
           {/* Success message */}
@@ -180,7 +180,7 @@ function RegisterPage() {
                   value={formData.studentId}
                   onChange={handleChange}
                   placeholder="กรอกรหัสนิสิต 8 หลัก"
-                  className={`w-full px-3 py-2 text-gray-600 border rounded-md ${
+                  className={`w-full px-3 py-2 border rounded-md ${
                     errors.studentId ? 'border-red-500' : 'border-gray-300'
                   } focus:outline-none focus:ring-1 focus:ring-blue-500`}
                   maxLength={8}
@@ -202,7 +202,7 @@ function RegisterPage() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="example@up.ac.th"
-                  className={`w-full px-3 py-2 text-gray-600 border rounded-md ${
+                  className={`w-full px-3 py-2 border rounded-md ${
                     errors.email ? 'border-red-500' : 'border-gray-300'
                   } focus:outline-none focus:ring-1 focus:ring-blue-500`}
                 />
@@ -223,7 +223,7 @@ function RegisterPage() {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="อย่างน้อย 6 ตัวอักษร"
-                  className={`w-full px-3 py-2 text-gray-600 border rounded-md ${
+                  className={`w-full px-3 py-2 border rounded-md ${
                     errors.password ? 'border-red-500' : 'border-gray-300'
                   } focus:outline-none focus:ring-1 focus:ring-blue-500`}
                 />
@@ -244,7 +244,7 @@ function RegisterPage() {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   placeholder="กรอกรหัสผ่านอีกครั้ง"
-                  className={`w-full px-3 py-2 text-gray-600 border rounded-md ${
+                  className={`w-full px-3 py-2 border rounded-md ${
                     errors.confirmPassword ? 'border-red-500' : 'border-gray-300'
                   } focus:outline-none focus:ring-1 focus:ring-blue-500`}
                 />
@@ -265,7 +265,7 @@ function RegisterPage() {
                   value={formData.firstName}
                   onChange={handleChange}
                   placeholder="กรอกชื่อ"
-                  className={`w-full px-3 py-2 text-gray-600 border rounded-md ${
+                  className={`w-full px-3 py-2 border rounded-md ${
                     errors.firstName ? 'border-red-500' : 'border-gray-300'
                   } focus:outline-none focus:ring-1 focus:ring-blue-500`}
                 />
@@ -286,7 +286,7 @@ function RegisterPage() {
                   value={formData.lastName}
                   onChange={handleChange}
                   placeholder="กรอกนามสกุล"
-                  className={`w-full px-3 py-2 text-gray-600 border rounded-md ${
+                  className={`w-full px-3 py-2 border rounded-md ${
                     errors.lastName ? 'border-red-500' : 'border-gray-300'
                   } focus:outline-none focus:ring-1 focus:ring-blue-500`}
                 />
@@ -307,7 +307,7 @@ function RegisterPage() {
                   value={formData.phoneNumber}
                   onChange={handleChange}
                   placeholder="กรอกหมายเลขโทรศัพท์ 10 หลัก"
-                  className={`w-full px-3 py-2 text-gray-600 border rounded-md ${
+                  className={`w-full px-3 py-2 border rounded-md ${
                     errors.phoneNumber ? 'border-red-500' : 'border-gray-300'
                   } focus:outline-none focus:ring-1 focus:ring-blue-500`}
                   maxLength={10}
@@ -327,7 +327,7 @@ function RegisterPage() {
                   name="faculty"
                   value={formData.faculty}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 text-gray-600 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
                 >
                   <option value="">-- เลือกคณะ --</option>
                   {faculties.map((faculty) => (
@@ -350,7 +350,7 @@ function RegisterPage() {
                   value={formData.major}
                   onChange={handleChange}
                   placeholder="กรอกสาขาวิชา"
-                  className="w-full px-3 py-2 text-gray-600 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
                 />
               </div>
             </div>

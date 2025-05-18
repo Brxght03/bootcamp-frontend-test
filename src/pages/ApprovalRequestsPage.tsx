@@ -57,6 +57,12 @@ function ApprovalRequestsPage() {
   const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
   const [filterType, setFilterType] = useState<string>("");
 
+  // ฟังก์ชันแปลงวันที่ไทย (DD/MM/YYYY) เป็น Date
+  const parseThaiDate = (dateStr: string): Date => {
+    const [day, month, year] = dateStr.split('/').map(Number);
+    return new Date(year - 543, month - 1, day);
+  };
+
   // โหลดข้อมูลกิจกรรมและผู้เข้าร่วม
   useEffect(() => {
     // จำลองการโหลดข้อมูล (ในระบบจริงควรใช้ API)
@@ -166,15 +172,19 @@ function ApprovalRequestsPage() {
     )
     .sort((a, b) => {
       // โค้ดการเรียงลำดับยังคงเหมือนเดิม...
-      const compareA = String(a[sortField]).toLowerCase();
-      const compareB = String(b[sortField]).toLowerCase();
+      let compareA: string | number = a[sortField];
+      let compareB: string | number = b[sortField];
 
-      if (compareA < compareB) {
-        return sortOrder === "asc" ? -1 : 1;
+      if (sortField === "registrationDate") {
+        compareA = parseThaiDate(a.registrationDate).getTime();
+        compareB = parseThaiDate(b.registrationDate).getTime();
+      } else {
+        compareA = String(compareA).toLowerCase();
+        compareB = String(compareB).toLowerCase();
       }
-      if (compareA > compareB) {
-        return sortOrder === "asc" ? 1 : -1;
-      }
+
+      if (compareA < compareB) return sortOrder === "asc" ? -1 : 1;
+      if (compareA > compareB) return sortOrder === "asc" ? 1 : -1;
       return 0;
     });
 

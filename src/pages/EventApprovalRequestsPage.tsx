@@ -250,11 +250,11 @@ function EventApprovalRequestsPage() {
       
       // สำหรับวันที่ ต้องแปลงเป็น Date เพื่อเปรียบเทียบที่ถูกต้อง
       if (sortField === 'startDate' || sortField === 'endDate' || sortField === 'requestDate') {
-        const dateA = new Date(formatDate(a[sortField]));
-        const dateB = new Date(formatDate(b[sortField]));
-        return sortOrder === 'asc'
-          ? dateA.getTime() - dateB.getTime()
-        : dateB.getTime() - dateA.getTime();
+        const dateA = compareA.split('/').reverse().join('-');
+        const dateB = compareB.split('/').reverse().join('-');
+        return sortOrder === 'asc' 
+          ? new Date(dateA).getTime() - new Date(dateB).getTime()
+          : new Date(dateB).getTime() - new Date(dateA).getTime();
       }
       
       if (compareA < compareB) {

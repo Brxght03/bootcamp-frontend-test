@@ -27,14 +27,12 @@ function HistoryPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<string>('');
 
-    // ฟังก์ชันแปลงวันที่จาก dd/MM/yyyy (ปีพุทธศักราช) เป็น Date object
+  // ฟังก์ชันแปลงวันที่ไทย (DD/MM/YYYY) เป็น Date
   const parseThaiDate = (dateStr: string): Date => {
     const [day, month, year] = dateStr.split('/').map(Number);
-    // แปลงปีพุทธศักราช (เช่น 2568) เป็นคริสต์ศักราช (เช่น 2025)
-    const christianYear = year - 543;
-    return new Date(christianYear, month - 1, day); // month - 1 เพราะ JavaScript เริ่มที่ 0
+    return new Date(year - 543, month - 1, day);
   };
-  
+
   useEffect(() => {
     // ข้อมูลตัวอย่าง (ในโปรเจคจริง ควรใช้ API เพื่อดึงข้อมูล)
     const sampleHistories: HistoryItem[] = [
@@ -143,7 +141,9 @@ function HistoryPage() {
       } else if (sortField === 'startDate' || sortField === 'endDate') {
         const dateA = parseThaiDate(a[sortField]);
         const dateB = parseThaiDate(b[sortField]);
-        return sortOrder === 'asc' ? dateA.getTime() - dateB.getTime() : dateB.getTime() - dateA.getTime();
+        return sortOrder === 'asc'
+          ? dateA.getTime() - dateB.getTime()
+          : dateB.getTime() - dateA.getTime();
       } else {
         // สำหรับฟิลด์อื่นๆ
         const compareA = String(a[sortField]).toLowerCase();

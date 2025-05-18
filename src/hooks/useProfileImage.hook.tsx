@@ -49,17 +49,6 @@ export function useProfileImage() {
     window.dispatchEvent(profileImageChangeEvent);
   };
 
-  // ฟังก์ชันลบรูปโปรไฟล์
-  const removeProfileImage = () => {
-    setProfileImage(null);
-    localStorage.removeItem('profileImage');
-
-    const profileImageChangeEvent = new CustomEvent('profileImageChange', {
-      detail: { profileImage: null }
-    });
-    window.dispatchEvent(profileImageChangeEvent);
-  };
-
   // Handle file input change
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
