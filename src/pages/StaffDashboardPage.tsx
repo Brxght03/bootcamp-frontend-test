@@ -43,8 +43,6 @@ interface ApprovalRequest {
   status: 'รอการอนุมัติ' | 'อนุมัติ' | 'ปฏิเสธ';
 }
 
-
-
 // Mock data for approval requests
 const mockApprovalRequests: ApprovalRequest[] = [
   {
